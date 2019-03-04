@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.text.NumberFormat;
 
 /**
@@ -17,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
     int quantity = 1;
     final int PRICE = 5;
-    int total = quantity * PRICE;
+    String total;
     TextView quantityTextView;
     TextView priceTextView;
 
@@ -27,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         quantityTextView = findViewById(R.id.quantity_text_view);
         priceTextView = findViewById(R.id.price_text_view);
+        updateTotal();
         updateScreen(quantity, total);
     }
 
@@ -34,15 +34,16 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-
+        String priceMessage = "Total: " + total + "\nThank you!";
+        priceTextView.setText(priceMessage);
     }
 
     /**
      * This method updates the values of quantity and total in the screen
      */
-    private void updateScreen(int quantity, int total) {
+    private void updateScreen(int quantity, String total) {
         quantityTextView.setText(Integer.toString(quantity));
-        priceTextView.setText(NumberFormat.getCurrencyInstance().format(total));
+        priceTextView.setText(total);
     }
 
     /**
@@ -80,9 +81,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * This method updates the total value
+     * This method defines the total String
      */
     private void updateTotal() {
-        total = quantity * PRICE;
+        total = NumberFormat.getCurrencyInstance().format(quantity * PRICE);
     }
 }
