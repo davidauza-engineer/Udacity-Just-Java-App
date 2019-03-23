@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import java.text.NumberFormat;
 
 /**
@@ -14,36 +15,36 @@ import java.text.NumberFormat;
  */
 public class MainActivity extends AppCompatActivity {
 
-    int quantity = 1;
-    final int PRICE = 5;
-    String total;
-    TextView quantityTextView;
-    TextView priceTextView;
+    private final int PRICE = 5;
+    private int mQuantity = 1;
+    private String mTotal;
+    private TextView mQuantityTextView;
+    private TextView mOrderSummaryTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        quantityTextView = findViewById(R.id.quantity_text_view);
-        priceTextView = findViewById(R.id.price_text_view);
+        mQuantityTextView = findViewById(R.id.quantity_text_view);
+        mOrderSummaryTextView = findViewById(R.id.order_summary_text_view);
         updateTotal();
-        updateScreen(quantity, total);
+        updateScreen(mQuantity, mTotal);
     }
 
     /**
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        String priceMessage = "Total: " + total + "\nThank you!";
-        priceTextView.setText(priceMessage);
+        String priceMessage = createOrderSummary(mQuantity, mTotal);
+        mOrderSummaryTextView.setText(priceMessage);
     }
 
     /**
      * This method updates the values of quantity and total in the screen
      */
     private void updateScreen(int quantity, String total) {
-        quantityTextView.setText(Integer.toString(quantity));
-        priceTextView.setText(total);
+        mQuantityTextView.setText(Integer.toString(quantity));
+        mOrderSummaryTextView.setText(total);
     }
 
     /**
@@ -51,9 +52,9 @@ public class MainActivity extends AppCompatActivity {
      * when the plus button is clicked.
      */
     public void increment(View view) {
-        quantity++;
+        mQuantity++;
         updateTotal();
-        updateScreen(quantity, total);
+        updateScreen(mQuantity, mTotal);
     }
 
     /**
@@ -62,12 +63,12 @@ public class MainActivity extends AppCompatActivity {
      * button is clicked.
      */
     public void decrement(View view) {
-        if (quantity > 1) {
-            quantity--;
+        if (mQuantity > 1) {
+            mQuantity--;
             updateTotal();
-            updateScreen(quantity, total);
+            updateScreen(mQuantity, mTotal);
         } else {
-            Toast toast = Toast.makeText(this, R.string.order_warning,
+            Toast toast = Toast.makeText(this, R.string.main_order_warning,
                     Toast.LENGTH_SHORT);
             if (Build.VERSION.SDK_INT >= 21) {
                 View viewToast = toast.getView();
@@ -84,6 +85,20 @@ public class MainActivity extends AppCompatActivity {
      * This method defines the total String
      */
     private void updateTotal() {
-        total = NumberFormat.getCurrencyInstance().format(quantity * PRICE);
+        mTotal = NumberFormat.getCurrencyInstance().format(mQuantity * PRICE);
+    }
+
+    /**
+     * This method creates a String to be displayed once the user hits the Submit Order button
+     *
+     * @param pQuantity The quantity selected by the user
+     * @param pTotal    The price of the order
+     * @return The String to be displayed
+     */
+    private String createOrderSummary(int pQuantity, String pTotal) {
+        return "Name: David Auza" +
+                "\nQuantity: " + pQuantity +
+                "\nTotal: " + pTotal +
+                "\nThank you!";
     }
 }
