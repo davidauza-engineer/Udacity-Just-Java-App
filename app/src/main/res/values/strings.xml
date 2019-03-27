@@ -8,6 +8,9 @@
     <string name="main_plus">+</string>
     <string name="main_minus">-</string>
     <string name="main_order_warning">The order must contain at least one coffee</string>
+    <string name="main_toppings">Toppings</string>
+    <string name="main_whipped_cream">Whipped cream</string>
+    <string name="main_chocolate">Chocolate</string>
     <!-- Strings for the main layout End. -->
 
 </resources>

@@ -5,6 +5,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,7 +36,17 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        String priceMessage = createOrderSummary(mQuantity, mTotal);
+        // Find Whipped cream CheckBox to be able to verify if it is checked
+        CheckBox whippedCreamCheckBox = findViewById(R.id.whipped_cream_check_box);
+        // Find Chocolate CheckBox to be able to verify if it is checked
+        CheckBox chocolateCheckBox = findViewById(R.id.chocolate_check_box);
+
+        String priceMessage = "Name: David Auza" +
+                "\nAdd whipped cream? " + whippedCreamCheckBox.isChecked() +
+                "\nAdd chocolate? " + chocolateCheckBox.isChecked() +
+                "\nQuantity: " + mQuantity +
+                "\nTotal: " + mTotal +
+                "\nThank you!";
         mOrderSummaryTextView.setText(priceMessage);
     }
 
@@ -86,19 +97,5 @@ public class MainActivity extends AppCompatActivity {
      */
     private void updateTotal() {
         mTotal = NumberFormat.getCurrencyInstance().format(mQuantity * PRICE);
-    }
-
-    /**
-     * This method creates a String to be displayed once the user hits the Submit Order button
-     *
-     * @param pQuantity The quantity selected by the user
-     * @param pTotal    The price of the order
-     * @return The String to be displayed
-     */
-    private String createOrderSummary(int pQuantity, String pTotal) {
-        return "Name: David Auza" +
-                "\nQuantity: " + pQuantity +
-                "\nTotal: " + pTotal +
-                "\nThank you!";
     }
 }
