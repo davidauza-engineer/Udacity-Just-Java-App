@@ -10,13 +10,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <EditText
+            android:id="@+id/name_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:hint="@string/main_hint_name_edit_text"
+            android:inputType="textCapWords"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/toppings_title"
             style="@style/titles"
             android:layout_marginLeft="16dp"
             android:text="@string/main_toppings"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/name_edit_text" />
 
         <CheckBox
             android:id="@+id/whipped_cream_check_box"

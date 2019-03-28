@@ -11,6 +11,7 @@
     <string name="main_toppings">Toppings</string>
     <string name="main_whipped_cream">Whipped cream</string>
     <string name="main_chocolate">Chocolate</string>
+    <string name="main_hint_name_edit_text">Name</string>
     <!-- Strings for the main layout End. -->
 
 </resources>

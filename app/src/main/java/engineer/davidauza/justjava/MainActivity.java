@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,12 +37,14 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
+        // Find Name EditText to be able to get the text from it
+        EditText nameEditText = findViewById(R.id.name_edit_text);
         // Find Whipped cream CheckBox to be able to verify if it is checked
         CheckBox whippedCreamCheckBox = findViewById(R.id.whipped_cream_check_box);
         // Find Chocolate CheckBox to be able to verify if it is checked
         CheckBox chocolateCheckBox = findViewById(R.id.chocolate_check_box);
 
-        String priceMessage = "Name: David Auza" +
+        String priceMessage = "Name: " + nameEditText.getText() +
                 "\nAdd whipped cream? " + whippedCreamCheckBox.isChecked() +
                 "\nAdd chocolate? " + chocolateCheckBox.isChecked() +
                 "\nQuantity: " + mQuantity +
