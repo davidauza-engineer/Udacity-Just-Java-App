@@ -1,6 +1,8 @@
 package engineer.davidauza.justjava;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -47,13 +49,32 @@ public class MainActivity extends AppCompatActivity {
         // Find Name EditText to be able to get the text from it
         EditText nameEditText = findViewById(R.id.name_edit_text);
 
-        String priceMessage = "Name: " + nameEditText.getText() +
+        String user = nameEditText.getText().toString();
+
+        String emailSubject = "JustJava order for " + user;
+
+        String emailBody = "Name: " + user +
                 "\nAdd whipped cream? " + whippedCreamCheckBox.isChecked() +
                 "\nAdd chocolate? " + chocolateCheckBox.isChecked() +
                 "\nQuantity: " + mQuantity +
                 "\nTotal: " + mTotal +
                 "\nThank you!";
-        mOrderSummaryTextView.setText(priceMessage);
+
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        // Only email apps should handle this
+        intent.setData(Uri.parse("mailto:"));
+        intent.putExtra(Intent.EXTRA_SUBJECT, emailSubject);
+        intent.putExtra(Intent.EXTRA_TEXT, emailBody);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        } else {
+            // Show a warning toast to let the user know he needs to install an email app to send
+            // the order
+            createWarningToast(R.string.main_email_warning);
+        }
+
+        // Show the order summary
+        mOrderSummaryTextView.setText(emailBody);
     }
 
     /**
@@ -120,7 +141,8 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * This method creates a warning toast if the user tries to decrease quantity below 1, or to
-     * increase quantity above 100
+     * increase quantity above 100. It is also used if the user does not have an email app
+     * installed when trying to send an order.
      *
      * @param pText The ID to locate the appropriate String at the strings.xml file
      */

@@ -9,6 +9,7 @@
     <string name="main_minus">-</string>
     <string name="main_order_warning_one">The order must contain at least one coffee</string>
     <string name="main_order_warning_one_hundred">The order cannot exceed 100 coffees</string>
+    <string name="main_email_warning">To send the order you need an email app</string>
     <string name="main_toppings">Toppings</string>
     <string name="main_whipped_cream">Whipped cream</string>
     <string name="main_chocolate">Chocolate</string>
