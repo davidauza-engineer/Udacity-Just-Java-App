@@ -17,20 +17,27 @@ import java.text.NumberFormat;
  */
 public class MainActivity extends AppCompatActivity {
 
-    private final int PRICE = 5;
     private int mQuantity = 1;
     private String mTotal;
     private TextView mQuantityTextView;
     private TextView mOrderSummaryTextView;
+    private CheckBox whippedCreamCheckBox;
+    private CheckBox chocolateCheckBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Set the Views needed
         mQuantityTextView = findViewById(R.id.quantity_text_view);
         mOrderSummaryTextView = findViewById(R.id.order_summary_text_view);
+        // Find Whipped cream CheckBox to be able to verify if it is checked
+        whippedCreamCheckBox = findViewById(R.id.whipped_cream_check_box);
+        // Find Chocolate CheckBox to be able to verify if it is checked
+        chocolateCheckBox = findViewById(R.id.chocolate_check_box);
+
         updateTotal();
-        updateScreen(mQuantity, mTotal);
     }
 
     /**
@@ -39,10 +46,6 @@ public class MainActivity extends AppCompatActivity {
     public void submitOrder(View view) {
         // Find Name EditText to be able to get the text from it
         EditText nameEditText = findViewById(R.id.name_edit_text);
-        // Find Whipped cream CheckBox to be able to verify if it is checked
-        CheckBox whippedCreamCheckBox = findViewById(R.id.whipped_cream_check_box);
-        // Find Chocolate CheckBox to be able to verify if it is checked
-        CheckBox chocolateCheckBox = findViewById(R.id.chocolate_check_box);
 
         String priceMessage = "Name: " + nameEditText.getText() +
                 "\nAdd whipped cream? " + whippedCreamCheckBox.isChecked() +
@@ -54,51 +57,85 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * This method updates the values of quantity and total in the screen
-     */
-    private void updateScreen(int quantity, String total) {
-        mQuantityTextView.setText(Integer.toString(quantity));
-        mOrderSummaryTextView.setText(total);
-    }
-
-    /**
-     * This method adds one to the number of coffees and displays it on the screen. It is called
-     * when the plus button is clicked.
+     * This method adds one to the number of coffees and displays it on the screen if the value of
+     * mQuantity is less than one hundred, else it shows a warning as orders cannot exceed one
+     * hundred coffees. It is called when the plus button is clicked.
      */
     public void increment(View view) {
-        mQuantity++;
-        updateTotal();
-        updateScreen(mQuantity, mTotal);
+        if (mQuantity < 100) {
+            mQuantity++;
+            updateTotal();
+        } else {
+            createWarningToast(R.string.main_order_warning_one_hundred);
+        }
     }
 
     /**
      * This method subtracts one to the number of coffees and displays it on the screen if the
-     * value of quantity is greater than one, else it shows a warning. It is called when the minus
-     * button is clicked.
+     * value of mQuantity is greater than one, else it shows a warning as orders cannot be negative.
+     * It is called when the minus button is clicked.
      */
     public void decrement(View view) {
         if (mQuantity > 1) {
             mQuantity--;
             updateTotal();
-            updateScreen(mQuantity, mTotal);
         } else {
-            Toast toast = Toast.makeText(this, R.string.main_order_warning,
-                    Toast.LENGTH_SHORT);
-            if (Build.VERSION.SDK_INT >= 21) {
-                View viewToast = toast.getView();
-                viewToast.setBackgroundTintList(ColorStateList.valueOf(getResources().
-                        getColor(R.color.colorAccent)));
-                TextView text = viewToast.findViewById(android.R.id.message);
-                text.setTextColor(getResources().getColor(R.color.white));
-            }
-            toast.show();
+            createWarningToast(R.string.main_order_warning_one);
         }
     }
 
     /**
-     * This method defines the total String
+     * This method defines the total String and updates the UI accordingly
      */
     private void updateTotal() {
-        mTotal = NumberFormat.getCurrencyInstance().format(mQuantity * PRICE);
+        final int PRICE_PER_CUP = 5;
+        final int WHIPPED_CREAM_TOPPING = 1;
+        final int CHOCOLATE_TOPPING = 2;
+
+        int finalUnitPrice = PRICE_PER_CUP;
+
+        if (whippedCreamCheckBox.isChecked()) {
+            finalUnitPrice += WHIPPED_CREAM_TOPPING;
+        }
+
+        if (chocolateCheckBox.isChecked()) {
+            finalUnitPrice += CHOCOLATE_TOPPING;
+        }
+
+        mTotal = NumberFormat.getCurrencyInstance().format(finalUnitPrice * mQuantity);
+
+        // Update UI
+        mQuantityTextView.setText(Integer.toString(mQuantity));
+        mOrderSummaryTextView.setText(mTotal);
+    }
+
+    /**
+     * This method is called when a topping is added so the variables and UI get updated properly
+     *
+     * @param view
+     */
+    public void updateTotal(View view) {
+        updateTotal();
+    }
+
+    /**
+     * This method creates a warning toast if the user tries to decrease quantity below 1, or to
+     * increase quantity above 100
+     *
+     * @param pText The ID to locate the appropriate String at the strings.xml file
+     */
+    private void createWarningToast(int pText) {
+        Toast toast = Toast.makeText(this, pText, Toast.LENGTH_SHORT);
+
+        // If the user is using an API greater than or equal to 21, styles the toast
+        if (Build.VERSION.SDK_INT >= 21) {
+            View viewToast = toast.getView();
+            viewToast.setBackgroundTintList(ColorStateList.valueOf(getResources().
+                    getColor(R.color.colorAccent)));
+            TextView text = viewToast.findViewById(android.R.id.message);
+            text.setTextColor(getResources().getColor(R.color.white));
+        }
+
+        toast.show();
     }
 }

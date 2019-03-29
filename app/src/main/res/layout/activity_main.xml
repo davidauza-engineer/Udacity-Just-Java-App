@@ -32,6 +32,7 @@
         <CheckBox
             android:id="@+id/whipped_cream_check_box"
             style="@style/check_boxes"
+            android:onClick="updateTotal"
             android:text="@string/main_whipped_cream"
             app:layout_constraintLeft_toLeftOf="@id/toppings_title"
             app:layout_constraintTop_toBottomOf="@id/toppings_title" />
@@ -39,6 +40,7 @@
         <CheckBox
             android:id="@+id/chocolate_check_box"
             style="@style/check_boxes"
+            android:onClick="updateTotal"
             android:text="@string/main_chocolate"
             app:layout_constraintLeft_toLeftOf="@id/whipped_cream_check_box"
             app:layout_constraintTop_toBottomOf="@id/whipped_cream_check_box" />
