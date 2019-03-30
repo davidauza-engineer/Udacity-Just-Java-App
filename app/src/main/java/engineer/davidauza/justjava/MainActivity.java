@@ -51,14 +51,17 @@ public class MainActivity extends AppCompatActivity {
 
         String user = nameEditText.getText().toString();
 
-        String emailSubject = "JustJava order for " + user;
+        String emailSubject = getString(R.string.main_email_subject, user);
 
-        String emailBody = "Name: " + user +
-                "\nAdd whipped cream? " + whippedCreamCheckBox.isChecked() +
-                "\nAdd chocolate? " + chocolateCheckBox.isChecked() +
-                "\nQuantity: " + mQuantity +
-                "\nTotal: " + mTotal +
-                "\nThank you!";
+        boolean hasWhippedCream = whippedCreamCheckBox.isChecked();
+        boolean hasChocolate = chocolateCheckBox.isChecked();
+
+        String emailBody = getString(R.string.main_email_body_name, user) +
+                "\n" + getString(R.string.main_email_body_whipped_cream, hasWhippedCream) +
+                "\n" + getString(R.string.main_email_body_chocolate, hasChocolate) +
+                "\n" + getString(R.string.main_email_body_quantity, mQuantity) +
+                "\n" + getString(R.string.main_email_body_total, mTotal) +
+                "\n" + getString(R.string.main_email_body_thanks);
 
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         // Only email apps should handle this

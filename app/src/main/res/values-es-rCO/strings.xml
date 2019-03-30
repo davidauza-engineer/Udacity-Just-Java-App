@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="main_app_name">Sólo Java</string>
+    <string name="main_order">Ordenar</string>
+    <string name="main_order_summary">Resumen de la Orden</string>
+    <string name="main_plus">+</string>
+    <string name="main_minus">-</string>
+    <string name="main_order_warning_one">La orden debe contener al menos un café</string>
+    <string name="main_order_warning_one_hundred">La orden no puede exceder 100 cafés</string>
+    <string name="main_email_warning">Para enviar la orden necesitas una email app</string>
+    <string name="main_email_subject">Orden SóloJava para
+        <xliff:g example="David Auza" id="user">%s</xliff:g></string>
+    <string name="main_email_body_name">Nombre:
+        <xliff:g example="David Auza" id="user_2">%s</xliff:g></string>
+    <string name="main_email_body_whipped_cream">¿Añadir crema batida?
+        <xliff:g example="true" id="add_whipped_cream">%b</xliff:g></string>
+    <string name="main_email_body_chocolate">¿Añadir chocolate?
+        <xliff:g example="true" id="add_chocolate">%b</xliff:g></string>
+    <string name="main_email_body_quantity">Cantidad:
+        <xliff:g example="2" id="quantity">%d</xliff:g></string>
+    <string name="main_email_body_total">Total:
+        <xliff:g example="$10.00" id="total">%s</xliff:g></string>
+    <string name="main_email_body_thanks">¡Muchas gracias!</string>
+    <string name="main_hint_name_edit_text">Nombre</string>
+    <string name="main_toppings">Adicionales</string>
+    <string name="main_whipped_cream">Crema batida</string>
+    <string name="main_chocolate">Chocolate</string>
+    <string name="main_quantity">Cantidad</string>
+</resources>

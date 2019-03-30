@@ -9,16 +9,18 @@
     </style>
 
     <!-- Style for the titles. -->
-    <style name="titles">
+    <style name="Titles">
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_height">48dp</item>
         <item name="android:layout_marginTop">16dp</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">15sp</item>
     </style>
 
     <!-- Style for the values displayed. -->
-    <style name="values">
+    <style name="Values">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@android:color/black</item>
@@ -27,7 +29,7 @@
     </style>
 
     <!-- Style for the minus and plus buttons. -->
-    <style name="quantity_buttons">
+    <style name="QuantityButtons">
         <item name="android:layout_width">48dp</item>
         <item name="android:layout_height">48dp</item>
         <item name="android:textStyle">bold</item>
@@ -35,7 +37,7 @@
     </style>
 
     <!-- Style for the CheckBoxes. -->
-    <style name="check_boxes">
+    <style name="CheckBoxes">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">16dp</item>

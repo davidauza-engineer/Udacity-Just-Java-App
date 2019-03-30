@@ -1,19 +1,98 @@
-<resources>
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
 
     <!-- Strings for the main layout Start. -->
+
+
+    <!-- Title for the application. [CHAR LIMIT=12] -->
     <string name="main_app_name">Just Java</string>
-    <string name="main_quantity">Quantity</string>
-    <string name="main_order">Order</string>
-    <string name="main_order_summary">Order Summary</string>
-    <string name="main_plus">+</string>
-    <string name="main_minus">-</string>
-    <string name="main_order_warning_one">The order must contain at least one coffee</string>
-    <string name="main_order_warning_one_hundred">The order cannot exceed 100 coffees</string>
-    <string name="main_email_warning">To send the order you need an email app</string>
-    <string name="main_toppings">Toppings</string>
-    <string name="main_whipped_cream">Whipped cream</string>
-    <string name="main_chocolate">Chocolate</string>
+
+    <!-- Hint text display in the empty field for the user's name [CHAR LIMIT=20] -->
     <string name="main_hint_name_edit_text">Name</string>
+
+    <!-- Toppings title [CHAR LIMIT=20] -->
+    <string name="main_toppings">Toppings</string>
+
+    <!-- Text in the first CheckBox [CHAR LIMIT=20] -->
+    <string name="main_whipped_cream">Whipped cream</string>
+
+    <!-- Text in the second CheckBox [CHAR LIMIT=20] -->
+    <string name="main_chocolate">Chocolate</string>
+
+    <!-- Quantity title [CHAR LIMIT=20] -->
+    <string name="main_quantity">Quantity</string>
+
+    <!-- Text in the order button [CHAR LIMIT=20] -->
+    <string name="main_order">Order</string>
+
+    <!-- Order Summary title [CHAR LIMIT=20] -->
+    <string name="main_order_summary">Order Summary</string>
+
+    <!-- Not translatable -->
+    <string name="main_plus">+</string>
+
+    <!-- Not translatable -->
+    <string name="main_minus">-</string>
+
+    <!-- Displayed if the user tries to select less than 1 coffee [CHAR LIMIT=50] -->
+    <string name="main_order_warning_one">The order must contain at least one coffee</string>
+
+    <!-- Displayed if the user tries to select more than 100 coffees [CHAR LIMIT=40] -->
+    <string name="main_order_warning_one_hundred">The order cannot exceed 100 coffees</string>
+
+    <!-- Displayed if the user does not have an email app when hitting the order button
+         [CHAR LIMIT=45]
+    -->
+    <string name="main_email_warning">To send the order you need an email app</string>
+
+    <!--
+      Subject line for the order summary email. It will be in the format of
+      "Just Java order for David Auza" where David Auza is the user's name. [CHAR LIMIT=NONE]
+    -->
+    <string name="main_email_subject">JustJava order for
+        <xliff:g example="David Auza" id="user">%s</xliff:g></string>
+
+    <!--
+     Name for the order summary. It will be shown in the format of "Name: David Auza" where
+     David Auza is the user's name. [CHAR LIMIT=NONE]
+   -->
+    <string name="main_email_body_name">Name:
+        <xliff:g example="David Auza" id="user_2">%s</xliff:g></string>
+
+    <!--
+      Whipped cream topping for the order summary. It will be shown in the format of
+      "Add whipped cream? true" or "Add whipped cream? false". [CHAR LIMIT=NONE]
+    -->
+    <string name="main_email_body_whipped_cream">Add whipped cream?
+        <xliff:g example="true" id="add_whipped_cream">%b</xliff:g></string>
+
+    <!--
+      Chocolate topping for the order summary. It will be shown in the format of
+      "Add chocolate? true" or "Add chocolate? false". [CHAR LIMIT=NONE]
+    -->
+    <string name="main_email_body_chocolate">Add chocolate?
+        <xliff:g example="true" id="add_chocolate">%b</xliff:g></string>
+
+    <!--
+      Quantity of coffee cups for the order summary. It will be shown in the format of
+      "Quantity: 2", where 2 is the number of cups ordered. [CHAR LIMIT=NONE]
+    -->
+    <string name="main_email_body_quantity">Quantity:
+        <xliff:g example="2" id="quantity">%d</xliff:g></string>
+
+    <!--
+      Total price for the order summary. It will be shown in the format of
+      "Total: $10.00" where $10.00 is the price. [CHAR LIMIT=NONE]
+    -->
+    <string name="main_email_body_total">Total:
+        <xliff:g example="$10.00" id="total">%s</xliff:g></string>
+
+    <!-- Thank you message for the order summary. [CHAR LIMIT=NONE] -->
+    <string name="main_email_body_thanks">Thank you!</string>
+
+
     <!-- Strings for the main layout End. -->
+
 
 </resources>
