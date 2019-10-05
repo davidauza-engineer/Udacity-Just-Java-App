@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.NumberFormat;
+import java.util.Locale;
 
 /**
  * This app displays an order form to order coffee.
@@ -129,14 +130,12 @@ public class MainActivity extends AppCompatActivity {
         mTotal = NumberFormat.getCurrencyInstance().format(finalUnitPrice * mQuantity);
 
         // Update UI
-        mQuantityTextView.setText(Integer.toString(mQuantity));
+        mQuantityTextView.setText(String.format(Locale.getDefault(), "%d", mQuantity));
         mOrderSummaryTextView.setText(mTotal);
     }
 
     /**
      * This method is called when a topping is added so the variables and UI get updated properly
-     *
-     * @param view
      */
     public void updateTotal(View view) {
         updateTotal();
